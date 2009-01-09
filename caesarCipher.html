@@ -1,0 +1,169 @@
+<html>
+<head>
+<!--link type="text/css" rel="stylesheet" href="http://www.niconomicon.net/index.css"-->
+<style type="text/css">
+html{
+	color:#ffffff;
+	background:#707070;
+	font-family: Myriad, Helvetica, Georgia, Arial, "Sans Serif";
+}
+
+body {
+	font-family: Myriad, Helvetica, Georgia, Arial, "Sans Serif";
+	background:#707070;
+	color:#ffffff;
+	font-size: 12pt;
+	margin: -0px;
+	padding:30px;
+	text-align: justify;
+}
+
+h1 {
+	font-size: 30px;
+	padding-bottom:20px;
+}
+a{
+	color:darkorange;
+}
+ol{
+	margin-top:10px;
+}
+
+li{
+	margin-bottom:10px;
+}
+li:hover{
+	background:#A0A0A0;
+}
+
+input{
+	background-color:#d0d0d0;
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:5px;
+	padding-bottom:5px;
+	font-size:14px;	
+}
+
+.encoding{
+	font:"Marker Felt";
+	line-height:1.4;
+	padding-left:10px;
+	
+}
+.smallTitle{
+	text-align:center;
+	font-weight:bold;
+	padding:10px;
+	
+}
+textarea {
+	background-color:#A0A0A0;
+	font-family: Helvetica,Arial,Georgia;
+	font-size: 13px;
+	margin-bottom:10px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:10px;
+}
+
+textarea#text {
+	color: #eaeaea;
+}
+
+.results{
+}
+
+</style>
+<script language="javascript">
+
+/*shift the text by rot offset in the alphabet*/
+function rot_n(text,rot){
+	var s2="";
+	var c;
+	var upperOffset = 65;
+	var lowerOffset = 97;
+
+	for(var i = 0; i<=text.length;i++){
+		c = text.charCodeAt(i);
+		if(c>64 && c< 91){//uppercase
+			s2+=String.fromCharCode((c-upperOffset+rot)%26+upperOffset);
+		}
+		else {
+			if( c>96 && c<123){//lowercase
+				s2+=String.fromCharCode((c-lowerOffset+rot)%26+lowerOffset);
+			}else {//non alpha character
+				s2+=text.charAt(i);
+			}
+		}
+	}
+	return s2;
+}
+
+function showResultSource(id,key){
+	var source = document.getElementById(id).innerHTML;
+	document.getElementById("resultSource").value=source;
+	document.getElementById("infos").innerHTML="Key used to decode: ["+key+"] <br/> Key used to encode: ["+(26-key)+"]";
+}
+
+function rotateText(){
+	var input = document.getElementById("rotInputText").value;
+	var ret="<ol>";
+	var id="";
+	for (var i = 1 ;i < 27;i++){
+		id="result"+i; 
+		ret+='<li id="'+id+'" onClick="showResultSource(\''+id+'\','+i+')">'+ rot_n(input,i) +"<\/li>"; 
+		document.getElementById("rotOutputDiv").innerHTML=ret+"</ol>";
+	}	
+}
+
+
+
+</script>
+
+</head>
+<body>
+<center>
+<h1>Online <a href="http://en.wikipedia.org/wiki/Caesar_cipher">Caesar Cipher</a> in Javascript</h1>
+</center>
+<!--
+Alphabet shifting at the press of a button!!!
+<br/>This page is made using only plain vanilla javascript. You can view the source to look at the code. It is a followup to my <a href="http://www.niconomicon.net/blog/2009/01/08/1144.rot.n/">post about Caesar cipher</a> on my <a href="http://www.niconomicon.net/blog">blog</a>.<br/>
+-<b> Warning : </b><i>It will shift only the alphabet ascii characters, not the accentuated letters like &eacute; &egrave; &ecirc; etc...</i>
+To view the source of your favorite result, click on it, and it will appear in the other text box. <br/>
+-<b> Warning : </b>be sure to remove all "amp;" from the selection if you want to use accents or other special characters.
+-->
+<center>
+
+<input type="button" onClick="rotateText()" value="Shift Alphabet"/>
+</center>
+<br/>
+<table width="100%" valign="top">
+<tr><th>Text to shift</th><th>Shifted text</th></tr>
+<tr><td valign="top">
+<textarea id="rotInputText" cols="50" rows="20">
+Zkogzads rgheshmf zs sgd oqdrr ne z atssnm!!!
+<aq>Sghr ozfd hr lzcd trhmf nmkx okzhm uzmhkkz izuzrbqhos. Xnt bzm uhdv sgd rntqbd sn knnj zs sgd bncd. Hs hr z enkknvto sn lx <z gqde="gsso://vvv.mhbnmnlhbnm.mds/aknf/2009/01/08/1144.qns.m/">onrs zants Bzdrzq bhogdq</z> nm lx <z gqde="gsso://vvv.mhbnmnlhbnm.mds/aknf">aknf</z>.<aq>
+-<a> Vzqmhmf : </a><h>Hs vhkk rghes nmkx sgd zkogzads zrbhh bgzqzbsdqr, mns sgd zbbdmstzsdc kdssdqr khjd &dzbtsd; &dfqzud; &dbhqb; dsb...</h>
+Sn uhdv sgd rntqbd ne xntq ezunqhsd qdrtks, bkhbj nm hs, zmc hs vhkk zoodzq hm sgd nsgdq sdws anw. <aq>
+-<a> Vzqmhmf : </a>ad rtqd sn qdlnud zkk "zlo;" eqnl sgd rdkdbshnm he xnt vzms sn trd zbbdmsr nq nsgdq rodbhzk bgzqzbsdqr.
+</textarea>
+
+<div class="smallTitle">Selected Shifted Text Source</div>
+
+<div class="encoding" id="infos">
+Key used to decode: [?] <br/>Key used to encode: [?]</div>
+
+<textarea class="results" id="resultSource" cols="50" rows="20">
+The full source of the result you select will appear here</textarea>
+</td><td width="100%" id="rotOutputDiv" valign="top">
+Your text will appear here.
+
+</td></tr></table>
+<br/><center>
+&copy;<a href="http://www.niconomicon.net">Nicolas Hoibian</a>, 2009. 
+This webpage is licensed under the creative commons <a href="http://creativecommons.org/licenses/by/3.0/">"Attribution"</a> license.<br/>
+Please send comments to nicolas.hoibian_AT_gmail.com with "Av&eacute; Caesar" in the title ;-).
+</center>
+</body>
+</html>
