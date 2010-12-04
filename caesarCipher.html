@@ -19,11 +19,9 @@ body {
 h1 {
 	color: #a0a0a0;
 	font-size: 1.5em;
+	margin:-0px auto;
 	margin-top: 18px;
 	margin-bottom: 18px;
-
-/*	font-size: 30px;
-	padding-bottom:20px;*/
 }
 a{
 	color:darkorange;
@@ -37,6 +35,12 @@ li{
 }
 li:hover{
 	background:#A0A0A0;
+}
+
+.explanation{
+margin:-0px auto;
+margin-bottom:30px;
+width:500px;
 }
 
 input{
@@ -127,17 +131,22 @@ function rotateText(){
 </head>
 <body>
 <center>
-<h1>Online <a href="http://en.wikipedia.org/wiki/Caesar_cipher">Caesar Cypher</a> in Javascript</h1>
+<h1>Online <a href="http://en.wikipedia.org/wiki/Caesar_cipher">Caesar Cipher</a> in Javascript</h1>
 </center>
 <!--
-Alphabet shifting at the press of a button!!!<br/>
-This page is made using only plain vanilla javascript. You can view the source to look at the code. It is a followup to my <a href="http://www.niconomicon.net/blog/2009/01/08/1144.rot.n/">post about Caesar cipher</a> on my <a href="http://www.niconomicon.net/blog">blog</a>.<br/>
-- <b>Warning: </b><i>It will shift only the alphabet ascii characters, not the accentuated letters like &eacute; &egrave; &ecirc;  etc...</i><br>
+Alphabet shifting at the press of a button!!!
+<br>This page is made using only plain vanilla javascript. You can view the source to look at the code. It is a followup to my <a href="http://www.niconomicon.net/blog/2009/01/08/1144.rot.n/">post about the Caesar cipher</a> on my <a href="http://www.niconomicon.net/blog">blog</a>.<br>
+- <b>Warning: </b><i>It will shift only the alphabet ascii characters, not the accentuated letters like é è ê etc...</i>. If these lettters are unicode they will not be shifted, and if they are in the html &...; format the ... characters will be shifted.<br>
 - To view the source of your favorite result, click on it, and it will appear in the other text box. <br>
-- <b>Warning: </b>If you want to reuse the selection, be sure to remove all "amp;" from the selection if you want to use accents or other special characters.
+- <b>Warning: </b>If you want to reuse the selection, be sure to remove all "amp;" from the selection if you have accents or other special characters.
+<br><br><br><br>
 -->
-<center>
+<div class="explanation">
+<p>The Caesar Cipher is a simple alphabet-shifting cryptography method. For example if the message is 'hello' and the key is 2, then each letter is replaced by the second letter following it in the alphabet and the message becomes 'jgnnq'. To decypt the message, use the reverse operation : replace each letter by the one 2 letters before it in the alphabet (or 24 letters after it).</p>
+<p>The message in the text box to the left is encrypted, press the button to see all the possible decryptions.</p>
+</div>
 
+<center>
 <input type="button" onClick="rotateText()" value="Shift Alphabet"/>
 </center>
 <br/>
@@ -146,10 +155,11 @@ This page is made using only plain vanilla javascript. You can view the source t
 <tr><td valign="top">
 <textarea id="rotInputText" cols="50" rows="20">
 Zkogzads rgheshmf zs sgd oqdrr ne z atssnm!!!
-<aq>Sghr ozfd hr lzcd trhmf nmkx okzhm uzmhkkz izuzrbqhos. Xnt bzm uhdv sgd rntqbd sn knnj zs sgd bncd. Hs hr z enkknvto sn lx <z gqde="gsso://vvv.mhbnmnlhbnm.mds/aknf/2009/01/08/1144.qns.m/">onrs zants Bzdrzq bhogdq</z> nm lx <z gqde="gsso://vvv.mhbnmnlhbnm.mds/aknf">aknf</z>.<aq/>
-- <a>Vzqmhmf: </a><h>Hs vhkk rghes nmkx sgd zkogzads zrbhh bgzqzbsdqr, mns sgd zbbdmstzsdc kdssdqr khjd &dzbtsd; &dfqzud; &dbhqb; dsb...</h><aq/>
+<aq>Sghr ozfd hr lzcd trhmf nmkx okzhm uzmhkkz izuzrbqhos. Xnt bzm uhdv sgd rntqbd sn knnj zs sgd bncd. Hs hr z enkknvto sn lx <z gqde="gsso://vvv.mhbnmnlhbnm.mds/aknf/2009/01/08/1144.qns.m/">onrs zants sgd Bzdrzq bhogdq</z> nm lx <z gqde="gsso://vvv.mhbnmnlhbnm.mds/aknf">aknf</z>.<aq>
+- <a>Vzqmhmf: </a><h>Hs vhkk rghes nmkx sgd zkogzads zrbhh bgzqzbsdqr, mns sgd zbbdmstzsdc kdssdqr khjd &dzbtsd; &dfqzud; &dbhqb; dsb...</h>. He sgdrd kdsssdqr zqd tmhbncd sgdx vhkk mns ad rghesdc, zmc he sgdx zqd hm sgd gslk &...; enqlzs sgd ... bgzqzbsdqr vhkk ad rghesdc.<aq>
 - Sn uhdv sgd rntqbd ne xntq ezunqhsd qdrtks, bkhbj nm hs, zmc hs vhkk zoodzq hm sgd nsgdq sdws anw. <aq>
 - <a>Vzqmhmf: </a>He xnt vzms sn qdtrd sgd rdkdbshnm, ad rtqd sn qdlnud zkk "zlo;" eqnl sgd rdkdbshnm he xnt gzud zbbdmsr nq nsgdq rodbhzk bgzqzbsdqr.
+<aq><aq><aq><aq>
 </textarea>
 
 <div class="smallTitle">Selected Shifted Text Source</div>
